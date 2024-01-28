@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="leaderboard.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image rotation and movement practice</title>
+    <style>
+        img {
+            width: 100px;
+            height: 100px;
+            transition: transform 0.5s;
+            position: absolute;
+        }
+    #answerForm {
+        text-align: center;
+    }
+
+    #answer {
+        width: 200px;
+    }
+    </style>
+    <script type="text/javascript" src="leaderboard.js"></script>
+</head>
+<body>
+    <h3>기역 모양 8개와 디귿 모양 4개로 단어를 만드세요.</h3>
+    <hr>
+    드래그로 이미지 이동<br>
+    우클릭으로 이미지 회전<br><br>
+    <form id="answerForm" onsubmit="submitForm(); return false;">
+        <label for="answer">정답을 입력하고 Enter키를 누르세요.
+            <br>(단 영어는 소문자로 입력해주세요)</label>
+        <br>
+        <input type="text" id="answer" name="answer" required>
+    </form>
+
+    <br><br>
+    <p>
+        <img id="K1" src="기역.png" oncontextmenu="rotateImage(event, 'K1'); return false;" onmousedown="startDrag(event, 'K1')" style="left: 0px; top: 360px;">
+        <img id="K2" src="기역.png" oncontextmenu="rotateImage(event, 'K2'); return false;" onmousedown="startDrag(event, 'K2')" style="left: 120px; top: 360px;">
+        <img id="K3" src="기역.png" oncontextmenu="rotateImage(event, 'K3'); return false;" onmousedown="startDrag(event, 'K3')" style="left: 240px; top: 360px;">
+        <img id="K4" src="기역.png" oncontextmenu="rotateImage(event, 'K4'); return false;" onmousedown="startDrag(event, 'K4')" style="left: 360px; top: 360px;">
+        <img id="K5" src="기역.png" oncontextmenu="rotateImage(event, 'K5'); return false;" onmousedown="startDrag(event, 'K5')" style="left: 480px; top: 360px;">
+        <img id="K6" src="기역.png" oncontextmenu="rotateImage(event, 'K6'); return false;" onmousedown="startDrag(event, 'K6')" style="left: 600px; top: 360px;">
+        <img id="K7" src="기역.png" oncontextmenu="rotateImage(event, 'K7'); return false;" onmousedown="startDrag(event, 'K7')" style="left: 720px; top: 360px;">
+        <img id="K8" src="기역.png" oncontextmenu="rotateImage(event, 'K8'); return false;" onmousedown="startDrag(event, 'K8')" style="left: 840px; top: 360px;">
+
+
+        <img id="D1" src="디귿.png" oncontextmenu="rotateImage(event, 'D1'); return false;" onmousedown="startDrag(event, 'D1')" style="left: 0px; top: 480px;">
+        <img id="D2" src="디귿.png" oncontextmenu="rotateImage(event, 'D2'); return false;" onmousedown="startDrag(event, 'D2')" style="left: 120px; top: 480px;">
+        <img id="D3" src="디귿.png" oncontextmenu="rotateImage(event, 'D3'); return false;" onmousedown="startDrag(event, 'D3')" style="left: 240px; top: 480px;">
+        <img id="D4" src="디귿.png" oncontextmenu="rotateImage(event, 'D4'); return false;" onmousedown="startDrag(event, 'D4')" style="left: 360px; top: 480px;">
+    </p>
+    
+
+    <script>
+        function rotateImage(e, imageId) {
+            e.preventDefault();
+
+            var img = document.getElementById(imageId);
+            var currentRotation = parseFloat(img.getAttribute('data-rotation') || 0);
+            currentRotation += 90;
+            img.style.transform = 'rotate(' + currentRotation + 'deg)';
+            img.setAttribute('data-rotation', currentRotation);
+        }
+
+        function startDrag(e, imageId) {
+            e.preventDefault();
+
+            var img = document.getElementById(imageId);
+
+            var offsetX = e.clientX - img.getBoundingClientRect().left;
+            var offsetY = e.clientY - img.getBoundingClientRect().top;
+
+            document.onmousemove = function (e) {
+                moveImage(e, img, offsetX, offsetY);
+            };
+
+            document.onmouseup = function () {
+                endDrag();
+            };
+        }
+
+        function moveImage(e, img, offsetX, offsetY) {
+            var x = e.clientX - offsetX;
+            var y = e.clientY - offsetY;
+
+            img.style.left = x + 'px';
+            img.style.top = y + 'px';
+        }
+
+        function endDrag() {
+            document.onmousemove = null;
+            document.onmouseup = null;
+        }
+
+        function submitForm() {
+            var userAnswer = document.getElementById("answer").value.toLowerCase();
+            if (userAnswer === "coffee") {
+                alert("정답입니다. 2초뒤 다음 스테이지로 넘어갑니다.");
+                setTimeout(function () {
+                    document.getElementById("answerForm").submit();
+                    window.location.href = "7.html";
+                }, 2000);
+            } else {
+                alert("오답입니다.");
+            }
+        }
+
+
+    </script>
+</body>
+</html>

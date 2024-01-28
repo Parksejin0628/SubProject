@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<head>
+  
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>정답을 입력하세요. 편견을 가지고 있으면 문제를 해결할 수 없어요. 행운을 빕니다. Answer: 16</title>
+  <style>
+    #imageButton {
+      cursor: pointer;
+      border: none;
+      padding: 0;
+      background: none;
+    }
+  </style>
+  <script type="text/javascript" src="leaderboard.js"></script>
+</head>
+<body>
+
+<h3>숨어있는 정답을 찾으세요</h3>
+<hr>
+hint : 이미지와 다양한 상호작용 필요
+<img id="imageButton" src="key.png" alt="클릭 가능한 이미지" onclick="check_answer(event)" oncontextmenu="hint(event); return false;">
+
+<script>
+  // 왼쪽 클릭 시 정답 확인하는 함수
+  function check_answer(event) {
+    // 이미지 요소 가져오기
+    var imageButton = document.getElementById("imageButton");
+    var correctAnswer = "16";
+
+    // 사용자에게 정답을 입력하도록 함
+    var userAnswer = prompt("정답을 입력하세요:");
+
+    // 사용자의 답과 정답 비교
+    if (userAnswer === correctAnswer) {
+      alert("정답입니다! 2초뒤 다음스테이지로 넘어갑니다.");
+      setTimeout(function() {
+        window.location.href = '8.html';
+      }, 2000);
+    } else {
+      alert("틀렸어요!");
+    }
+  }
+
+  // 오른쪽 클릭 시 노래 재생 및 힌트 주는 함수
+  function hint(event) {
+    alert("제목을 확인하세요");
+  }
+</script>
+
+</body>
+</html>

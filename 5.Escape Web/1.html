@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script type="text/javascript" src="leaderboard.js"></script>
+<meta charset = "utf-8">
+<title>열쇠 찾기 랜덤 박스</title>
+<style>
+.secretBox{ width: 80px; height: 80px; left: 0px; top: 0px; border: 5px solid #000000; background: #FFD400; position: absolute; z-index: 100;
+	font-size : 55px; font-weight : bold; text-align : center;}
+</style>
+
+<script>
+	let clickDownX = [];
+	let clickDownY = [];
+	let isClick = 0;
+	let secretBoxObject = document.getElementsByClassName("secretBox");
+	function ClickDown(e, index)
+	{
+		isClick = 1;
+		clickDownX[index] = e.clientX - secretBoxObject[index].offsetLeft;
+		clickDownY[index] = e.clientY - secretBoxObject[index].offsetTop;
+		
+	}
+	function ClickUp()
+	{
+		isClick = 0;
+	}
+	function MoveBox(e, index)
+	{
+		if(isClick == 0)
+		{
+			return;
+		}
+		secretBoxObject[index].style.left = (e.clientX - clickDownX[index]) + "px";
+		secretBoxObject[index].style.top = (e.clientY - clickDownY[index]) + "px";
+	}
+
+</script>
+</head>
+<body>
+	<a href = "2.html">
+      <img src="key.png" alt="Overlay Image" style="position: absolute; top: 20px; left: 20px; width: 70px; height: 70px;">
+  	</a>
+
+	<div class = "secretBox" style = "left : 10px; top : 10px" 
+	onmousedown = "ClickDown(event, 0)" onmouseup = "ClickUp()"
+	onmousemove = "MoveBox(event, 0)"> 
+		
+		
+		?
+	</div>
+
+
+	<div style = "font-size : 30px; font-weight : bold; z-index: 200; position: absolute; left : 110px; top : 10px">
+		를 움직여서 숨겨진 <br>버튼을 찾아보세요!
+	</div>
+
+	<div class = "secretBox" style = "left : 10px; top : 110px" 
+	onmousedown = "ClickDown(event, 1)" onmouseup = "ClickUp()"
+	onmousemove = "MoveBox(event, 1)"> 
+		?
+	</div>
+
+	<div class = "secretBox" style = "left : 110px; top : 110px" 
+	onmousedown = "ClickDown(event, 2)" onmouseup = "ClickUp()"
+	onmousemove = "MoveBox(event, 2)"> 
+		?
+	</div>
+
+	<div class = "secretBox" style = "left : 210px; top : 110px" 
+	onmousedown = "ClickDown(event, 3)" onmouseup = "ClickUp()"
+	onmousemove = "MoveBox(event, 3)"> 
+		?
+	</div>
+
+	<div class = "secretBox" style = "left : 310px; top : 110px" 
+	onmousedown = "ClickDown(event, 4)" onmouseup = "ClickUp()"
+	onmousemove = "MoveBox(event, 4)"> 
+		?
+	</div>
+
+	<div class = "secretBox" style = "left : 410px; top : 110px" 
+	onmousedown = "ClickDown(event, 5)" onmouseup = "ClickUp()"
+	onmousemove = "MoveBox(event, 5)"> 
+		?
+	</div>
+
+	<div class = "secretBox" style = "left : 510px; top : 110px" 
+	onmousedown = "ClickDown(event, 6)" onmouseup = "ClickUp()"
+	onmousemove = "MoveBox(event, 6)"> 
+		?
+	</div>
+
+	<div class = "secretBox" style = "left : 10px; top : 210px" 
+	onmousedown = "ClickDown(event, 7)" onmouseup = "ClickUp()"
+	onmousemove = "MoveBox(event, 7)"> 
+		?
+	</div>
+
+	<div class = "secretBox" style = "left : 110px; top : 210px" 
+	onmousedown = "ClickDown(event, 8)" onmouseup = "ClickUp()"
+	onmousemove = "MoveBox(event, 8)"> 
+		?
+	</div>
+
+	<div class = "secretBox" style = "left : 210px; top : 210px" 
+	onmousedown = "ClickDown(event, 9)" onmouseup = "ClickUp()"
+	onmousemove = "MoveBox(event, 9)"> 
+		?
+	</div>
+
+	<div class = "secretBox" style = "left : 310px; top : 210px" 
+	onmousedown = "ClickDown(event, 10)" onmouseup = "ClickUp()"
+	onmousemove = "MoveBox(event, 10)"> 
+		?
+	</div>
+
+	<div class = "secretBox" style = "left : 410px; top : 210px" 
+	onmousedown = "ClickDown(event, 11)" onmouseup = "ClickUp()"
+	onmousemove = "MoveBox(event, 11)"> 
+		?
+	</div>
+
+	<div class = "secretBox" style = "left : 510px; top : 210px" 
+	onmousedown = "ClickDown(event, 12)" onmouseup = "ClickUp()"
+	onmousemove = "MoveBox(event, 12)"> 
+		?
+	</div>
+
+	<div class = "secretBox" style = "left : 10px; top : 310px" 
+	onmousedown = "ClickDown(event, 13)" onmouseup = "ClickUp()"
+	onmousemove = "MoveBox(event, 13)"> 
+		?
+	</div>
+
+	<div class = "secretBox" style = "left : 110px; top : 310px" 
+	onmousedown = "ClickDown(event, 14)" onmouseup = "ClickUp()"
+	onmousemove = "MoveBox(event, 14)"> 
+		?
+	</div>
+
+	<div class = "secretBox" style = "left : 210px; top : 310px" 
+	onmousedown = "ClickDown(event, 15)" onmouseup = "ClickUp()"
+	onmousemove = "MoveBox(event, 15)"> 
+		?
+	</div>
+
+	<div class = "secretBox" style = "left : 310px; top : 310px" 
+	onmousedown = "ClickDown(event, 16)" onmouseup = "ClickUp()"
+	onmousemove = "MoveBox(event, 16)"> 
+		?
+	</div>
+
+	<div class = "secretBox" style = "left : 410px; top : 310px" 
+	onmousedown = "ClickDown(event, 17)" onmouseup = "ClickUp()"
+	onmousemove = "MoveBox(event, 17)"> 
+		?
+	</div>
+
+	<div class = "secretBox" style = "left : 510px; top : 310px" 
+	onmousedown = "ClickDown(event, 18)" onmouseup = "ClickUp()"
+	onmousemove = "MoveBox(event, 18)"> 
+		?
+	</div>
+
+	<div class = "secretBox" style = "left : 10px; top : 410px" 
+	onmousedown = "ClickDown(event, 19)" onmouseup = "ClickUp()"
+	onmousemove = "MoveBox(event, 19)"> 
+		?
+	</div>
+
+	<div class = "secretBox" style = "left : 110px; top : 410px" 
+	onmousedown = "ClickDown(event, 20)" onmouseup = "ClickUp()"
+	onmousemove = "MoveBox(event, 20)"> 
+		?
+	</div>
+
+	<div class = "secretBox" style = "left : 210px; top : 410px" 
+	onmousedown = "ClickDown(event, 21)" onmouseup = "ClickUp()"
+	onmousemove = "MoveBox(event, 21)"> 
+		?
+	</div>
+
+	<div class = "secretBox" style = "left : 310px; top : 410px" 
+	onmousedown = "ClickDown(event, 22)" onmouseup = "ClickUp()"
+	onmousemove = "MoveBox(event, 22)"> 
+		?
+	</div>
+
+	<div class = "secretBox" style = "left : 410px; top : 410px" 
+	onmousedown = "ClickDown(event, 23)" onmouseup = "ClickUp()"
+	onmousemove = "MoveBox(event, 23)"> 
+		?
+	</div>
+
+	<div class = "secretBox" style = "left : 510px; top : 410px" 
+	onmousedown = "ClickDown(event, 24)" onmouseup = "ClickUp()"
+	onmousemove = "MoveBox(event, 24)"> 
+		?
+	</div>
+
+	<div class = "secretBox" style = "left : 10px; top : 510px" 
+	onmousedown = "ClickDown(event, 25)" onmouseup = "ClickUp()"
+	onmousemove = "MoveBox(event, 25)"> 
+		?
+	</div>
+
+	<div class = "secretBox" style = "left : 110px; top : 510px" 
+	onmousedown = "ClickDown(event, 26)" onmouseup = "ClickUp()"
+	onmousemove = "MoveBox(event, 26)"> 
+		?
+	</div>
+
+	<div class = "secretBox" style = "left : 210px; top : 510px" 
+	onmousedown = "ClickDown(event, 27)" onmouseup = "ClickUp()"
+	onmousemove = "MoveBox(event, 27)"> 
+		?
+	</div>
+
+	<div class = "secretBox" style = "left : 310px; top : 510px" 
+	onmousedown = "ClickDown(event, 28)" onmouseup = "ClickUp()"
+	onmousemove = "MoveBox(event, 28)"> 
+		?
+	</div>
+
+	<div class = "secretBox" style = "left : 410px; top : 510px" 
+	onmousedown = "ClickDown(event, 29)" onmouseup = "ClickUp()"
+	onmousemove = "MoveBox(event, 29)"> 
+		?
+	</div>
+
+	<div class = "secretBox" style = "left : 510px; top : 510px" 
+	onmousedown = "ClickDown(event, 30)" onmouseup = "ClickUp()"
+	onmousemove = "MoveBox(event, 30)"> 
+		?
+	</div>
+
+	
+
+</body>
+</html>
+
+

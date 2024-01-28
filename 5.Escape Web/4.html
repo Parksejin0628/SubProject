@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script type="text/javascript" src="leaderboard.js"></script>
+  <style >
+    .random-object {
+      width: 50px;
+      height: 50px;
+      background-size: cover;
+      position: absolute;
+    }
+  </style>
+</head>
+<body>
+<h3>열쇠를 클릭하여 탈출하기</h3>
+<hr>
+열쇠를 클릭하여 다음스테이지로 넘어가세요.
+
+<script>
+  var currentObject = null;
+
+  function getRandomPosition() {
+    var maxWidth = window.innerWidth - 50;
+    var maxHeight = window.innerHeight - 50;
+
+    var randomX = Math.floor(Math.random() * maxWidth);
+    var randomY = Math.floor(Math.random() * maxHeight);
+
+    return { x: randomX, y: randomY };
+  }
+
+  function createRandomObject() {
+    if (currentObject) {
+      var randomPosition = getRandomPosition();
+      currentObject.style.left = randomPosition.x + 'px';
+      currentObject.style.top = randomPosition.y + 'px';
+    } else {
+      var randomPosition = getRandomPosition();
+      var object = document.createElement('a');
+      object.className = 'random-object';
+      object.href = '5.html';
+      object.target = '_blank';
+      object.style.left = randomPosition.x + 'px';
+      object.style.top = randomPosition.y + 'px';
+      object.style.backgroundImage = "url('key.png')";
+      document.body.appendChild(object);
+      currentObject = object;
+    }
+
+    setTimeout(function() {
+      currentObject.remove();
+      currentObject = null;
+      createRandomObject();
+    }, 1000);
+  }
+
+  function repeatObjectCreation() {
+    setInterval(function() {
+      createRandomObject();
+    }, 1000);
+  }
+
+  repeatObjectCreation();
+</script>
+
+</body>
+</html>

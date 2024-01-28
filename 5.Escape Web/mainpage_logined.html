@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>메인페이지-로그인됨</title>
+	<link href="mainpage.css" type="text/css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+	<script type="text/javascript">
+		let account = new Account(localStorage.getItem("id"));
+		function logout() {
+			localStorage.removeItem("id");
+			window.location.replace("mainpage.html");
+		}
+		function Account(id){
+			this.id = id;
+		}
+		function gamestart(){
+			window.location.replace("1.html");
+		}
+		function loadSaveFile() {
+        // 현재 로그인된 닉네임 가져오기
+        let currentUsername = localStorage.getItem("id");
+
+        // 로그인되어 있지 않은 경우
+        if (!currentUsername) {
+            alert("로그인을 먼저 해주세요.");
+            return;
+        }
+
+        // 현재 로그인된 사용자의 세이브 파일 확인
+        let saveFileKey = currentUsername + "End";
+        let currentStage = localStorage.getItem(saveFileKey);
+
+        // 세이브 파일이 없는 경우
+        if (!currentStage) {
+            alert("이전 플레이 기록이 없습니다.");
+            return;
+        }
+
+        // 확인 창 띄우기
+        let confirmMessage = `현재 ${currentStage} 스테이지까지 진행된 기록이 있습니다. 이 스테이지부터 다시 시작하시겠습니까?`;
+        let userResponse = confirm(confirmMessage);
+
+        // 사용자가 확인을 누른 경우
+        if (userResponse) {
+            // 예를 누른 경우 해당 스테이지로 이동
+            let nextPage = `${currentStage}.html`;
+            window.location.replace(nextPage);
+        	}
+        }
+	</script>
+	<script type="text/javascript" src="leaderboard.js"></script>
+</head>
+<body>
+	<div id="background">	
+	</div>
+	<div id="mainui">
+		<div id="mainui-grid">
+			<div>
+				<div id="mainui-guide">
+					<div id="guide">
+						저희 게임은 수업 시간에 배운 <br> 내용을 활용하여 웹페이지를 <br> 탈출하는 게임입니다.<br>
+						게임은 12개의 스테이지로 <br> 이루어져 있으며 모두 <br> 클리어해보시길 바랍니다.
+					</div>					
+				</div>
+			</div>
+			<div>
+				<div id="mainui-game">
+					<div id="mainui-gamewrap">
+						<div id="profile">
+							<div id="profile-img"><img src="profile-img.png"></div>	
+							<div id="profile-user"><script type="text/javascript">
+								document.write(account.id+"님<br>환영합니다.");
+							</script></div>
+						</div>
+						<hr>
+						<div id="game-start">
+							<button type="button" onclick="gamestart()">게임시작</button>
+						</div>
+						<div id="logout">
+							<button type="button" onclick="logout()"> 로그아웃</button>
+						</div>
+					</div>				
+				</div>
+				<div id="mainui-member">
+					<div id="member">
+						<h2> 제작진 및 역할 </h2>
+						김병훈 - 메인페이지 제작 <br>
+						김기명 - 게임 제작 <br>
+						박세진 - 게임 제작 <br>
+						서경식 - 게임 제작 <br>
+					</div>
+				</div>
+			</div>
+			<div>
+				<div id="mainui-savefile">
+					 <button onclick="loadSaveFile()">이전 최고기록 <br> 불러오기</button>
+				</div>
+				<div id="mainui-leaderboard">
+					<div id="leaderboard-container">
+						<script>
+					        showLeaderboard(); // 리더보드를 표시하는 함수 호출
+    					</script>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

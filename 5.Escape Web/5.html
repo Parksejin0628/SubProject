@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<head>
+  
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script type="text/javascript" src="leaderboard.js"></script>
+  <style>
+
+    .reroll img {
+      width: 2000px; 
+      height: 2000px;
+      display: block;
+    }
+  </style>
+
+</head>
+<body>
+  <div id="scrollDiv" style="overflow:auto">
+    <div class="image-box">
+      <img class="image-thumbnail">
+    </div>
+    <div style="position: relative; width: 2000px; height: 500px;">
+      <img src="top.png" alt="Background Image" style="width: 2000px; height: 1000px;">
+      <a href = "6.html">
+      <img src="key.png" alt="Overlay Image" style="position: absolute; top: 50px; left: 50px; width: 200px; height: 200px;"></a>
+    </div>
+    <div class="reroll" id="rerollContainer">
+    </div>
+  </div>
+  <script>
+    let  count = 0;
+
+    // 이미지 경로
+    const imagePath = "middle.png";
+
+    // rerollContainer 요소 가져오기
+    const rerollContainer = document.getElementById("rerollContainer");
+
+    // scrollDiv 요소 가져오기
+    const scrollDiv = document.getElementById("scrollDiv");
+
+    // 새 이미지를 추가하고 스크롤을 아래로 이동하는 함수
+    function addImageAndScroll() {
+      if(count < 150){
+      // 새로운 이미지 요소 생성
+      const newImage = document.createElement("img");
+      newImage.src = imagePath;
+
+      // rerollContainer에 새 이미지 추가
+      rerollContainer.appendChild(newImage);
+
+
+      window.scrollTo(0, document.body.scrollHeight);
+      setInterval(addImageAndScroll, 300);
+      count++;
+    }
+    }
+
+    // 초기 호출
+    addImageAndScroll();
+  </script>
+</body>
+</html>

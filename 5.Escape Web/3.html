@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script type="text/javascript" src="leaderboard.js"></script>
+<meta charset = "utf-8">
+
+<title>모든 전구를 켜라!</title>
+<style>
+.light { width : 100px; height : 125px; position : absolute; left : 0px; top : 0px;}
+.button { width : 100px; height : 100px; position : absolute; }
+#key { position: absolute; top:180px; left: 300px; width: 0px; height: 0px; }
+</style>
+
+<script>
+	let isLight = [false, false, false, false, false];
+	function ClickButton(e, lightIndex1, lightIndex2, lightIndex3)
+	{
+		let lights = document.getElementsByClassName("light");
+		let key = document.getElementById("key");
+
+		lightIndex1 -= 1;
+		lightIndex2 -= 1;
+		lightIndex3 -= 1;
+		
+		isLight[lightIndex1] = !isLight[lightIndex1];
+		isLight[lightIndex2] = !isLight[lightIndex2];
+		isLight[lightIndex3] = !isLight[lightIndex3];
+		
+		lights[lightIndex1].src = isLight[lightIndex1] ? "light.png" : "nolight.png";
+		lights[lightIndex2].src = isLight[lightIndex2] ? "light.png" : "nolight.png";
+		lights[lightIndex3].src = isLight[lightIndex3] ? "light.png" : "nolight.png";
+
+		if(isLight[0] && isLight[1] && isLight[2] && isLight[3] && isLight[4])
+		{
+			key.style.width = 100 + "px";
+			key.style.height = 100 + "px";
+		}
+		
+	}
+</script>
+</head>
+<body>
+	<a href = "4.html">
+      <img id = "key" src="key.png" alt="Overlay Image">
+  	</a>
+	<div>
+		<img class = "light" src = "nolight.png" style = "top : 20px; left : 300px;">
+	</div>
+
+	<div>
+		<img class = "light" src = "nolight.png" style = "top : 150px; left : 150px;">
+	</div>
+
+	<div>
+		<img class = "light" src = "nolight.png" style = "top : 300px; left : 220px;">
+	</div>
+
+	<div>
+		<img class = "light" src = "nolight.png" style = "top : 300px; left : 380px;">
+	</div>
+
+	<div>
+		<img class = "light" src = "nolight.png" style = "top : 150px; left : 450px;"> 
+	</div>
+
+	<div>
+		<img class = "button" src = "redButton.png" style = "top : 450px; left : 100px;" onmousedown = "ClickButton(event, 2, 4, 5)">
+	</div>
+	<div>
+		<img class = "button" src = "redButton.png" style = "top : 450px; left : 200px;" onmousedown = "ClickButton(event, 1, 4, 5)">
+	</div>
+	<div>
+		<img class = "button" src = "redButton.png" style = "top : 450px; left : 300px;" onmousedown = "ClickButton(event, 1, 3, 5)">
+	</div>
+	<div>
+		<img class = "button" src = "redButton.png" style = "top : 450px; left : 400px;" onmousedown = "ClickButton(event, 2, 3, 4)">
+	</div>
+	<div>
+		<img class = "button" src = "redButton.png" style = "top : 450px; left : 500px;" onmousedown = "ClickButton(event, 1, 2, 3)">
+	</div>
+	
+	
+
+	
+</body>
+</html>

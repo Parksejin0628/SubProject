@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<head>
+  <script type="text/javascript" src="leaderboard.js"></script>
+  <meta charset="utf-8">
+  <title>숨겨진 단어를 찾아 탈출하세요</title>
+  <style>
+    body {
+      background-color: red;
+      position: relative;
+    }
+
+    .red, .green, .blue {
+      width: 100px;
+      height: 50px;
+      font-size: 16px;
+    }
+
+    .red {
+      background-color: red;
+    }
+
+    .green {
+      background-color: green;
+    }
+
+    .blue {
+      background-color: blue;
+    }
+
+    .letter {
+      position: absolute;
+      font-size: 20px;
+    }
+
+    #you {
+      color: green;
+    }
+
+    #go {
+      color: red;
+    }
+
+    #home {
+      color: blue;
+    }
+  </style>
+</head>
+<body id="body">
+  <button class="red" type="button" onclick="changeColor('red')"></button>
+  <button class="green" type="button" onclick="changeColor('green')"></button>
+  <button class="blue" type="button" onclick="changeColor('blue')"></button>
+  <br>
+  <p id="you" class="letter">y</p>
+  <p id="you" class="letter">o</p>
+  <p id="you" class="letter">u</p>
+  <p id="go" class="letter">g</p>
+  <p id="go" class="letter">o</p>
+  <p id="home" class="letter">h</p>
+  <p id="home" class="letter">o</p>
+  <p id="home" class="letter">m</p>
+  <p id="home" class="letter">e</p>
+
+  <input type="text" id="inputText" placeholder="초록 빨강 파랑 순으로 "oninput="checkAndRedirect()">
+
+  <script>
+    function changeColor(color) {
+      document.getElementById('body').style.backgroundColor = color;
+    }
+
+    function getRandomPosition(element) {
+      const bodyRect = document.body.getBoundingClientRect();
+      const elemRect = element.getBoundingClientRect();
+
+      const horizontal = Math.random() * (bodyRect.width - elemRect.width);
+      const vertical = Math.random() * (bodyRect.height - elemRect.height) * 30;
+
+      return { x: horizontal, y: vertical };
+    }
+
+    const letters = document.querySelectorAll('.letter');
+
+    letters.forEach(letter => {
+      const position = getRandomPosition(letter);
+      letter.style.left = position.x + 'px';
+      letter.style.top = position.y + 'px';
+    });
+
+    function checkAndRedirect() {
+      const inputText = document.getElementById('inputText').value.toLowerCase();
+      if (inputText === 'you go home') {
+        window.location.href = '9.html';
+      }
+    }
+  </script>
+</body>
+</html>

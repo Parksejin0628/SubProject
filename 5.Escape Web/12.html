@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>마우스를 버튼에 올려 놓았을때 힌트 출력</title>
+    <style>
+        #container {
+            display: flex;
+            align-items: center;
+        }
+
+        #object2 {
+            width: 150px;
+            height: 15px;
+            background-color: yellow;
+            display: none;
+        }
+    </style>
+    <script type="text/javascript" src="leaderboard.js"></script>
+    <script>
+        window.onload = function() {
+            const hint = document.getElementById("hint");
+            const object2 = document.getElementById("object2");
+            const answerInput = document.getElementById("answerInput");
+            const checkButton = document.getElementById("checkButton");
+            const resultMessage = document.getElementById("resultMessage");
+
+            hint.addEventListener("mouseover", function() {
+                object2.style.display = "block";
+            });
+
+            hint.addEventListener("mouseout", function() {
+                object2.style.display = "none";
+            });
+
+            checkButton.addEventListener("click", function() {
+                const answer = 98;
+                const userAnswer = parseInt(answerInput.value);
+
+                if (userAnswer === answer) {
+                    resultMessage.textContent = "정답입니다!";
+                    resultMessage.style.color = "green";
+                    setTimeout(function() {
+                        window.location.href = "mainpage_logined.html";
+                    }, 2000);
+                } else {
+                    resultMessage.textContent = "오답입니다!";
+                    resultMessage.style.color = "red";
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+    <h3>주어진 문장들로 부터 정답을 유추하세요</h3>
+    <hr>
+    <p>
+        3+2=7<br>
+        5+4=23<br>
+        7+6=47<br>
+        9+8=79<br>
+        10+9=?<br>
+
+        ?에 들어갈 알맞은 숫자는 얼마인가?
+    </p>
+
+    <div id="container">
+        <img id="hint" width="50" height="50" src="key.png" alt="Object 1">
+        <div id="object2">A+B = A*B + B - 1</div>
+    </div>
+    <input type="text" id="answerInput" placeholder="정답">
+    <button id="checkButton">확인</button>
+    <div id="resultMessage"></div>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>확률성 탈출</title>
+    <script type="text/javascript" src="leaderboard.js"></script>
+    <style>
+        #escape29 {
+            display: none;
+        }
+
+        div {
+            font: normal 40px verdana;
+        }
+
+        .redtext {
+            text-shadow: 3px 3px red;
+        }
+
+        #horrorImage {
+            display: none;
+            display: none;
+            max-width: 100%;
+            max-height: 100vh;
+        }
+    </style>
+</head>
+<body>
+
+<div class="redtext">0% 확률로 방 탈출 키가 생성됩니다.</div>
+
+<div id="escape29">
+  <a href="10.html">
+    <img id="escape" src="key.png" alt="Escape Key">
+  </a>
+</div>
+
+<div id="horrorImage">
+    <img src="man.jpg" alt="Horror Image">
+</div>
+
+<script>
+    var visitcount = localStorage.getItem('visitcount') || 0;
+
+    window.onload = function () {
+        visitcount++;
+        localStorage.setItem('visitcount', visitcount);
+
+        if (visitcount > 5) {
+            document.getElementById("horrorImage").style.display = "block";
+              localStorage.setItem('visitcount', 0);
+        }
+        if (Math.random() < 0.1) {
+            showkey();
+        }
+
+        document.body.style.backgroundColor = getRandomColor();
+
+
+    };
+
+    function showkey() {
+        document.getElementById("escape29").style.display = "block";
+    }
+
+    function getRandomColor() {
+        var letters = '0123456789ABCDEF';
+        var color = '#';
+        for (var i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }
+</script>
+
+</body>
+</html>

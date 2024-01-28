@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script type="text/javascript" src="leaderboard.js"></script>
+<meta charset = "utf-8">
+<title>너무 어두워</title>
+<style>
+#background { width : 2000px; height : 1000px; left : 0px; top : 0px;background : #000000;position : absolute; z-index : -100 }
+#WhiteCircle { width: 120px; height: 120px; left: 10px; top: 10px; border: 5px solid #FFFFFF; background: #FFFFFF; position: absolute; z-index: -99; border-radius: 50%;
+	font-size : 55px; font-weight : bold; text-align : center;}
+</style>
+
+<script>
+	
+	function MoveMouse(e)
+	{
+		let WhiteCircle = document.getElementById("WhiteCircle");
+		WhiteCircle.style.left = e.pageX - 70+ "px";
+		WhiteCircle.style.top = e.pageY - 70+ "px";
+	}
+</script>
+</head>
+<body onmousemove = "MoveMouse(event)">
+	<div style = "color : #FFFFFF; font-weight : bold; font-size : 35px; position: absolute; left: 10px; top: 10px; text-shadow: -1px 0px black, 0px 1px black, 1px 0px black, 0px -1px black; ">
+		어둠 속에 숨어있는 열쇠를 찾아라.
+	</div>
+	
+	<div id = "background" >
+		B
+	</div>
+	<div id = "WhiteCircle">
+	</div>
+	<a href = "3.html">
+      <img src="key.png" alt="Overlay Image" style="position: absolute; top: 30px; left: 1780px; width: 70px; height: 70px; filter: brightness(0);">
+  	</a>
+</body>
+</html>

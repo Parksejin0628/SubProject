@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>메인페이지</title>
+	<link href="mainpage.css" type="text/css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+	<script type="text/javascript">
+		function login() {
+			let user = document.getElementById("user");
+			let pw = document.getElementById("pw");
+
+			if (user.value =="" ) {
+            	alert("닉네임을 입력해주세요")
+            	return 0;
+            }
+            else if(pw.value == ""){
+            	alert("비밀번호를 입력해주세요")
+            	return 0;
+            }
+
+			let val = localStorage.getItem(user.value);
+			if (val == null || val !== pw.value) {
+				alert("이메일 또는 비밀번호가 일치하지 않습니다")
+				return 0;
+			}
+			else
+				alert("로그인 완료")
+			localStorage.setItem("id", user.value);
+			window.location.replace("mainpage_logined.html");
+
+		}
+		function openPopup() {
+			let popup = document.getElementById("popup");
+			popup.style.visibility = "visible";
+			popup.style.opacity = "1";
+		}
+
+		function closePopup() {
+			let popup = document.getElementById("popup");
+			let user = document.getElementById("user-reg");
+            let pw = document.getElementById("pw-reg");
+            let repw = document.getElementById("repw-reg");
+
+            user.value = null;
+            pw.value = null; 
+            repw.value = null; // 회원가입창 닫았을 때 쓰던 내용 초기화
+
+			popup.style.visibility = "hidden";
+			popup.style.opacity = "0";
+		}
+		 function register(){
+		 	let popup = document.getElementById("popup");
+            let user = document.getElementById("user-reg");
+            let pw = document.getElementById("pw-reg");
+            let repw = document.getElementById("repw-reg");
+
+            //유효성 검사
+            if (user.value =="" ) {
+            	alert("닉네임을 입력해주세요")
+            	return 0;
+            }
+            else if(pw.value == ""){
+            	alert("비밀번호를 입력해주세요")
+            	return 0;
+            }
+            else if(pw.value !== repw.value){
+            	alert("비밀번호를 확인해주세요")
+            	return 0;
+            }
+            else if(localStorage.getItem(user.value)!==null){
+            	alert("이미 존재하는 닉네임입니다")
+            	return 0;
+            }
+
+            localStorage.setItem(user.value, pw.value);
+            alert("회원가입 완료")
+            popup.style.visibility = "hidden";
+			popup.style.opacity = "0";
+
+        }
+        function loadSaveFile() {
+        // 현재 로그인된 닉네임 가져오기
+        let currentUsername = localStorage.getItem("id");
+
+        // 로그인되어 있지 않은 경우
+        if (!currentUsername) {
+            alert("로그인을 먼저 해주세요.");
+            return;
+        }
+
+        // 현재 로그인된 사용자의 세이브 파일 확인
+        let saveFileKey = currentUsername + "End";
+        let currentStage = localStorage.getItem(saveFileKey);
+
+        // 세이브 파일이 없는 경우
+        if (!currentStage) {
+            alert("저장된 세이브 파일이 없습니다.");
+            return;
+        }
+
+        // 확인 창 띄우기
+        let confirmMessage = `현재 ${currentStage} 스테이지까지 진행된 기록이 있습니다. 이 스테이지부터 다시 시작하시겠습니까?`;
+        let userResponse = confirm(confirmMessage);
+
+        // 사용자가 확인을 누른 경우
+        if (userResponse) {
+            // 예를 누른 경우 해당 스테이지로 이동
+            let nextPage = `${currentStage}.html`;
+            window.location.replace(nextPage);
+        	}
+        }
+	</script>
+	<script type="text/javascript" src="leaderboard.js"></script>
+</head>
+<body>
+	<div id="background">
+		
+	</div>
+	<div id="mainui">
+		<div id="mainui-grid">
+			<div>
+				<div id="mainui-guide">
+					<div id="guide">
+						저희 게임은 수업 시간에 배운 <br> 내용을 활용하여 웹페이지를 <br> 탈출하는 게임입니다.<br>
+						게임은 12개의 스테이지로 <br> 이루어져 있으며 모두 <br> 클리어해보시길 바랍니다.
+					</div>					
+				</div>
+			</div>
+			<div>
+				<div id="mainui-login">
+					<div id="login-form">
+						<div id="login">	
+							<label for="user" class="hidden">닉네임</label>
+							<input id="user" type="text" placeholder="닉네임" onKeyPress="if( event.keyCode==13 ){login();}">
+						</div>
+						<div id="login">
+							<label for="pw" class="hidden"> 비밀번호 </label>
+							<input id="pw" type="password" placeholder="비밀번호" onKeyPress="if( event.keyCode==13 ){login();}">
+						</div>
+						<hr>
+						<div id="login">
+							<button type="button" onclick="login()"> 로그인</button>
+						</div>
+						<div id="signup">
+							<button type="button" onclick="openPopup()"> 회원가입</button>
+						</div>
+					</div>
+				</div>
+				<div id="mainui-member">
+					<div id="member">
+						<h2> 제작진 및 역할 </h2>
+						김병훈 - 메인페이지 제작 <br>
+						김기명 - 게임 제작 <br>
+						박세진 - 게임 제작 <br>
+						서경식 - 게임 제작 <br>
+					</div>
+				</div>
+			</div>
+			<div>
+				<div id="mainui-savefile">
+					<button onclick="loadSaveFile()">이전 최고기록 <br> 불러오기</button>
+				</div>
+				<div id="mainui-leaderboard">
+					<div id="leaderboard-container">
+						<script>
+        					showLeaderboard(); // 리더보드를 표시하는 함수 호출
+    					</script>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="popup">
+			<div id="popup-content">
+				<span id="close-btn" onclick="closePopup()">&times;</span>
+				<h2>회원가입</h2>
+				<form>
+					<input id= "user-reg" type="text" placeholder="닉네임" onKeyPress="if( event.keyCode==13 ){register();}">
+					<input id= "pw-reg" type="password" placeholder="비밀번호" onKeyPress="if( event.keyCode==13 ){register();}">
+					<input id= "repw-reg" type="password" placeholder="비밀번호 확인" onKeyPress="if( event.keyCode==13 ){register();}">
+					<input type="button" value="회원가입하기" onclick="register()">
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
